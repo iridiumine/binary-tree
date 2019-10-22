@@ -153,10 +153,10 @@ BinTree CreatBinTree(ElementType* input_mid, ElementType* input_last, int length
 
 ElementType Max(BinTree T) {
     if (T->LeftChild == NULL && T->RightChild != NULL) {
-        return Max(T->RightChild);
+        return MAX(T->Data, Max(T->RightChild));
     }
     else if (T->LeftChild != NULL && T->RightChild == NULL) {
-        return Max(T->LeftChild);
+        return MAX(T->Data, Max(T->LeftChild));
     }
     else if (T->LeftChild == NULL && T->RightChild == NULL) {
         return T->Data;
@@ -166,10 +166,10 @@ ElementType Max(BinTree T) {
 
 ElementType Min(BinTree T) {
     if (T->LeftChild == NULL && T->RightChild != NULL) {
-        return Max(T->RightChild);
+        return MIN(T->Data, Min(T->RightChild));
     }
     else if (T->LeftChild != NULL && T->RightChild == NULL) {
-        return Max(T->LeftChild);
+        return MIN(T->Data, Min(T->LeftChild));
     }
     else if (T->LeftChild == NULL && T->RightChild == NULL) {
         return T->Data;
@@ -182,6 +182,18 @@ int Value(BinTree T) {
 }
 
 int main(int argc, char const *argv[]) {
-    
+    BinTree X;
+    X = Initialize();
+    char input_mid[] = "BBCDEFGHIJW";
+    char input_last[] = "BCDBGJWIHFE";
+    int length = (int)strlen(input_mid);
+    X = CreatBinTree(input_mid, input_last, length);
+    First_Read(X);
+    printf("\n");
+    Mid_Read(X);
+    printf("\n");
+    Last_Read(X);
+    printf("\n");
+    printf("%d\n", Value(X));
     return 0;
 }
